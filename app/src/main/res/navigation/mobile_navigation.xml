@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/launcher_home">
+
+    <!--TODO STEP 4 Create a new navigation destination pointing to SettingsFragment-->
+    <fragment
+        android:id="@+id/setting_screen"
+        android:name="com.example.lequanghoa.navigationcomponentcodelabs.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <!--TODO END STEP4-->
+
+    <fragment
+        android:id="@+id/launcher_home"
+        android:name="com.example.lequanghoa.navigationcomponentcodelabs.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/flow_step_one" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_step_one"
+        android:name="com.example.lequanghoa.navigationcomponentcodelabs.FlowStepFragment"
+        android:label="Flow Step One"
+        tools:layout="@layout/flow_step_one_fragment">
+        <argument
+            android:name="step"
+            android:defaultValue="1"
+            app:type="integer" />
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/flow_step_two" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_step_two"
+        android:name="com.example.lequanghoa.navigationcomponentcodelabs.FlowStepFragment"
+        android:label="Flow Step Two"
+        tools:layout="@layout/flow_step_two_fragment">
+        <argument
+            android:name="step"
+            type="integer"
+            android:defaultValue="2" />
+        <action
+            android:id="@+id/next_action"
+            app:popUpTo="@id/launcher_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/android"
+        android:name="com.example.lequanghoa.navigationcomponentcodelabs.DeepLinkFragment"
+        android:label="deeplink_fragment"
+        tools:layout="@layout/deeplink_fragment">
+        <argument
+            android:name="myarg"
+            type="string"
+            android:defaultValue="Android!"/>
+        <deepLink app:uri="digital.com/{myarg}"  android:autoVerify="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopping"
+        android:name="com.example.lequanghoa.navigationcomponentcodelabs.ShoppingFragment"
+        android:label="ShoppingFragment" />
+</navigation>
